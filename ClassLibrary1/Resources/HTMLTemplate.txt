@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<style>
+            body { font-family: georgia, sans-serif; }
+            h1 { font-family: arial, sans-serif; margin-top: 30px; }
+			hr { border: 4px solid black; }
+            span.namevaluepair { display: block; }
+			#headerImage { width: 100%; height: 100%; display: block; }
+			#LogoImage{ width: 100%; height: 100%; display: block; }
+            div.animation { background-color: silver; border: 1px solid black; margin: 1em; padding: 1em; }
+            div.comment { background-color: rgb(255,255,204); border: 1px solid black; margin: 1em; padding: 1em; }
+            div.footnote { font-size: smaller; font-weight: lighter; text-align: right; }
+            span.camera { margin-left: 1em; float: left; }
+            span.camera span.namevaluepair span.name { width: 2em; display: inline-block; }
+			div.row:after { content: ""; display: table; clear: both; }
+            div.spacer { clear: both; margin: 0px; padding: 0px; white-space: pre; }
+         </style>
+</head>
+<body>
+<div id="headerImage">
+<img id="LogoImage" src="logo.png" alt=" ">
+</div>
+<hr/>

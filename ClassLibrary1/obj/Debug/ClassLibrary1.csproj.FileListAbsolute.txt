@@ -1,0 +1,6 @@
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\obj\Debug\ClassLibrary1.csprojAssemblyReference.cache
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\obj\Debug\ClassLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\anaderpour\Desktop\Personal\Navisworks\CustomReport\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

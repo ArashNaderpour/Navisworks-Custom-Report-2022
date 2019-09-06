@@ -1,0 +1,230 @@
+﻿<Window x:Class="CustomReport2020.UserInputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:CustomReport2020"
+        mc:Ignorable="d"
+        Title="Custom Report" Height="810" Width="420" MaxWidth="420">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="10 20 10 0">
+
+            <Label Content="Image Resolution" FontSize="20"/>
+
+            <Grid Name="ResolutionGrid" Grid.Column="0" Margin="5 5 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="WidthUI" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Image Width" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="WidthInput" Grid.Column="1" Text="512" Padding="4 5 4 0"/>
+
+                </Grid>
+                <Grid Name="HeightUI" Grid.Row="1" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Image Height" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="HeightInput" Grid.Column="1" Text="512" Padding="4 5 4 0"/>
+                </Grid>
+
+                <Grid Name="ImageScaleUI" Grid.Row="2" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Image Scale" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <Slider Name="ImageScale" Grid.Column="1" Margin ="0 5 0 0"
+                         Value="100" Minimum="0" Maximum="100" SmallChange="1" LargeChange="10"
+                         TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True"
+                         AutoToolTipPlacement="TopLeft" />
+
+                </Grid>
+            </Grid>
+
+            <Label Content="Table Layout" FontSize="20" Margin="0 10 0 5"/>
+
+            <Grid Name="TableSetting" Grid.Column="0" Margin="5 5 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="ColumnCount" Margin="5 0 0 0" Height="30" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Column Count" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="ColumnCountInput" Grid.Column="1" Text="2" Padding="4 5 4 0"/>
+                </Grid>
+
+                <Grid Name="TableUI" Margin="5 0 0 0" Height="30" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Row Height" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="RowHeightInput" Grid.Column="1" Text="650" Padding="4 5 4 0"/>
+                </Grid>
+            </Grid>
+
+            <Label Content="Text Setting" FontSize="20" Margin="0 10 0 5"/>
+
+            <Grid Name="TextSettingGrid" Grid.Column="0" Margin="5 5 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="ViewpointPropertyUI" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Name="CommentsInclude" Content="Comments" Grid.Column="0" HorizontalAlignment="Left"
+                              IsChecked="True"/>
+                    <CheckBox Name="ReviewTextInclude" Content="Review Texts" Grid.Column="1" IsChecked="True"/>
+                </Grid>
+
+                <Grid Name="HeaderUI" Grid.Row="1" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Header Font Size" Grid.Column="0" HorizontalAlignment="left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="HeaderSizeInput" Grid.Column="1" Text="15" Padding="4 5 4 0"/>
+                </Grid>
+                <Grid Name="SpanUI" Grid.Row="2" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Comments Font Size" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="CommentsSizeInput" Grid.Column="1" Text="10" Padding="4 5 4 0"/>
+                </Grid>
+                <Grid Name="ReviewTextUI" Grid.Row="3" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Review Texts Font Size" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="ReviewTextSizeInput" Grid.Column="1" Text="10" Padding="4 5 4 0"/>
+                </Grid>
+            </Grid>
+
+            <Label Content="Group Setting" FontSize="20" Margin="0 10 0 5"/>
+
+            <Grid Name="GroupSettingGrid" Grid.Column="0" Margin="5 5 5 0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="GroupUI0" Grid.Row="0" Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="UserInput0" Text="Clash" Grid.Column="0" HorizontalAlignment="Stretch"
+                   Padding="0 0 0 0"/>
+                    <xctk:ColorPicker Name="UserColor0" Grid.Column="1"  
+                                  DisplayColorTooltip="True"
+                                  AvailableColorsSortingMode="HueSaturationBrightness" 
+                                  SelectedColor="#FFA1A1" Margin="0 0 0 0"/>
+                </Grid>
+
+                <Grid Name="GroupUI1" Grid.Row="1" Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="UserInput1" Text="Review" Grid.Column="0" HorizontalAlignment="Stretch"
+                   Padding="0 0 0 0"/>
+                    <xctk:ColorPicker Name="UserColor1" Grid.Column="1"  
+                                  DisplayColorTooltip="True"
+                                  AvailableColorsSortingMode="HueSaturationBrightness" 
+                                  SelectedColor="#FFFFA1" Margin="0 0 0 0"/>
+                </Grid>
+
+                <Grid Name="GroupUI2" Grid.Row="2" Margin="0 0 0 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="UserInput2" Text="Approved" Grid.Column="0" HorizontalAlignment="Stretch"
+                   Padding="0 0 0 0"/>
+                    <xctk:ColorPicker Name="UserColor2" Grid.Column="1"  
+                                  DisplayColorTooltip="True"
+                                  AvailableColorsSortingMode="HueSaturationBrightness" 
+                                  SelectedColor="#A1FFA1" Margin="0 0 0 0"/>
+                </Grid>
+
+            </Grid>
+
+            <Grid Name="GroupControl" Margin="5 10 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AddGroup" Grid.Column="0" Content="Add"
+                    Click="Add_Clicked" Height="30" Margin="0 0 10 0"/>
+
+                <Button Name="RemoveGroup" Grid.Column="1" Content="Remove"
+                    Click="Remove_Clicked" Height="30" Margin="10 0 0 0"/>
+
+            </Grid>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="4"
+                   Margin="0 30 0 0"/>
+
+            <Button Name="Export" Grid.Column="1" Content="Export" 
+                Click="Export_Clicked" Margin="0 30 0 0"
+                Height="30"/>
+
+            <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="0"
+                   Margin="0 15 0 0"/>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
