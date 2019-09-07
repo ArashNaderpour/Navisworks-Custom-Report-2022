@@ -32,14 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autodesk.Navisworks.Api">
-      <HintPath>..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.Api.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.Api, Version=17.0.1336.83, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.ComApi">
-      <HintPath>..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.ComApi.dll</HintPath>
+    <Reference Include="Autodesk.Navisworks.ComApi, Version=17.0.1336.83, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.ComApi.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Navisworks.Interop.ComApi">
-      <HintPath>..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Autodesk\Autodesk_Navisworks_Manage_2020_Multilingual_Win_64bit_dlm\x64\NAVMAN\Autodesk\Autodesk.Navisworks.Interop.ComApi.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
