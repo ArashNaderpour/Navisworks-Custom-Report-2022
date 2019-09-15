@@ -24,6 +24,8 @@ namespace CustomReport2020
         public int widthResolution;
         public int heightResolution;
 
+        private bool cancelProcess = false;
+
         string svpName;
 
         public float headerSizeInput;
@@ -265,7 +267,6 @@ namespace CustomReport2020
 
                         string userColorInput = "rgb(" + cp.SelectedColor.Value.R + "," + cp.SelectedColor.Value.G + "," + cp.SelectedColor.Value.B + ")";
 
-                        //userColorInputs.Add(userColorInput);
 
                         userColorInputs.Add(cp.SelectedColor.Value);
                     }
@@ -436,7 +437,7 @@ namespace CustomReport2020
                     string removableChars = Regex.Escape(@"|<>*/\?:");
                     string pattern = "[" + removableChars + "]";
 
-                    svpName = Regex.Replace(oSVI.DisplayName, pattern, "").Replace("\"", string.Empty);
+                    svpName = Regex.Replace(oSVI.DisplayName, pattern, "").Replace("\"", string.Empty).ToUpper();
 
                     // set the current viewpoint  
                     oDoc.SavedViewpoints.CurrentSavedViewpoint = oSVI;
@@ -485,18 +486,19 @@ namespace CustomReport2020
                     }
 
                     this.SaveViewpointData(comments, reviewTexts);
-
-                    if (string.IsNullOrWhiteSpace(svpName))
-                    {
-                        System.Windows.Forms.MessageBox.Show("The process was canceled.");
-                        return;
-                    }
-
-                    else
+                  
+                    if (this.cancelProcess == false)
                     {
                         savedViewPoints.children.Add(svpName);
                     }
+                    else
+                    {
+                        // Throw an exception to stop the program
 
+                        throw new System.ArgumentException("The process canceled.");
+
+                    }
+                    
                     // the image file name
                     string imageFileName = saveFolderPath + "\\" + svpName + ".png";
 
@@ -609,28 +611,51 @@ namespace CustomReport2020
 
         private void SaveViewpointData(string comments, string redText)
         {
+            int nameSeq = 1;
+
+            string inputText;
+
             try
             {
                 this.viewpointComments.Add(svpName, comments);
 
                 this.viewpointReviewTexts.Add(svpName, redText);
+
             }
 
             catch
             {
                 string message = string.Format("All viewpoints are required to have unique names for export process to continue." +
-                    " Please enter a new name for the second \"{0}\" viewpoint in the box below and press OK. Press Cancel to abandon the export process", svpName);
+                    "Either leave the TextBox value without any change to automatically rename the viewpoint in the report, or enter a new name for the second \"{0}\" viewpoint in the TextBox below, then press \"OK\"." +
+                    " Press Cancel to abandon the export process", svpName);
 
-                svpName = Interaction.InputBox(message, "Title", "", -1, -1);
+                inputText = Interaction.InputBox(message, "Rename Viewpoint", "AUTOMATIC RENAME", -1, -1);
 
-                if (svpName == "")
+                if (string.IsNullOrWhiteSpace(inputText))
                 {
-                    return;
+                    this.cancelProcess = true;
                 }
-
                 else
                 {
-                    SaveViewpointData(comments, redText);
+                    if (inputText == "AUTOMATIC RENAME")
+                    {
+                        while (this.viewpointComments.ContainsKey(svpName + " (" + nameSeq.ToString() + ")"))
+                        {
+                            nameSeq++;
+                        }
+
+                        svpName = svpName + " (" + nameSeq.ToString() + ")";
+
+                        this.viewpointComments.Add(svpName, comments);
+
+                        this.viewpointReviewTexts.Add(svpName, redText);
+                    }
+                    else
+                    {
+                        svpName = inputText;
+
+                        SaveViewpointData(comments, redText);
+                    }
                 }
             }
         }
