@@ -32,7 +32,6 @@ C:\Users\anaderpour\Desktop\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Rele
 C:\Users\anaderpour\Desktop\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csproj.CopyComplete
 C:\Users\anaderpour\Desktop\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.dll
 C:\Users\anaderpour\Desktop\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.pdb
-C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csprojAssemblyReference.cache
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\UserInputWindow.g.cs
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020_MarkupCompile.cache
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020_MarkupCompile.lref
@@ -66,3 +65,4 @@ C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\Cl
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csproj.GenerateResource.cache
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csproj.CoreCompileInputs.cache
 C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csproj.CopyComplete
+C:\Users\anaderpour\Desktop\Personal\Navisworks\Navisworks-Custom-Report-2020\ClassLibrary1\obj\Release\CustomReport2020.csprojAssemblyReference.cache

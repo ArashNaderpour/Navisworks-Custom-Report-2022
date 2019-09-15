@@ -28,6 +28,7 @@ namespace CustomReport2020
 
         string svpName;
 
+        public float reportSizeInput;
         public float headerSizeInput;
         public float commentsSizeInput;
         public float reviewTextSizeInput;
@@ -50,8 +51,6 @@ namespace CustomReport2020
         private List<string> userTextInputs = new List<string>();
 
         private List<System.Windows.Media.Color> userColorInputs = new List<System.Windows.Media.Color>();
-
-        //private List<string> userColorInputs = new List<string>();
 
         private Dictionary<string, string> backgroundColorImage = new Dictionary<string, string>();
 
@@ -131,6 +130,21 @@ namespace CustomReport2020
             catch
             {
                 System.Windows.Forms.MessageBox.Show("Please enter a number larger than 0 as the row height.");
+                return;
+            }
+
+            try
+            {
+                this.reportSizeInput = float.Parse(this.ReportSizeInput.Text);
+
+                if (this.reportSizeInput <= 0)
+                {
+                    throw new System.Exception();
+                }
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Please enter a number larger than 0 as the report name font size.");
                 return;
             }
 
@@ -304,6 +318,15 @@ namespace CustomReport2020
                 GenerateHTML();
 
                 System.Windows.Forms.MessageBox.Show("Successful.");
+
+                this.viewpointReviewTexts.Clear();
+                this.viewpointComments.Clear();
+                this.userTextInputs.Clear();
+                this.userColorInputs.Clear();
+                this.backgroundColorImage.Clear();
+                this.savedViewPoints = new VPGroup("Root");
+                this.counter = 0;
+                this.cancelProcess = false;
             }
 
             catch (System.Exception ex)
@@ -341,13 +364,17 @@ namespace CustomReport2020
             string tempText = string.Empty;
 
             List<string> lines = htmlTemplate.Split('\n').ToList<string>();
-            string reportName = oDoc.FileName.Split('\\')[oDoc.FileName.Split('\\').Length - 1].Split('.')[0];
+            string fileName = oDoc.FileName.Split('\\')[oDoc.FileName.Split('\\').Length - 1].Split('.')[0];
 
-            string reportHeader = string.Format("<h1>{0}</h1>", "Viewpoints__" + oDoc.FileName.Split('\\')[oDoc.FileName.Split('\\').Length - 1]);
+            string reportName = string.Format("<h1>{0}</h1>", this.ReportNameInput.Text);
 
             string cellSize = ((100 / this.numOfColumns) - 2).ToString();
 
-            int insertLine = 9;
+            int insertLine = 8;
+
+            tempText = "h1 { font-family: arial, sans-serif; margin-top: 30px; font-size: " + this.reportSizeInput.ToString() + "pt; }";
+            insertLine++;
+            lines.Insert(insertLine, tempText);
 
             tempText = "h2, h3, h4, h5 { font-family: arial, sans-serif; text-transform: capitalize; margin: 1em; font-size: " + this.headerSizeInput.ToString() + "pt; }";
             insertLine++;
@@ -416,7 +443,7 @@ namespace CustomReport2020
             insertLine++;
             lines.Insert(insertLine, tempText);
 
-            lines.Add(reportHeader);
+            lines.Add(reportName);
 
             GenerateViewpointHTML(savedViewPoints, string.Empty, lines, viewpointComments, viewpointReviewTexts, this.counter);
 
@@ -424,7 +451,7 @@ namespace CustomReport2020
             lines.Add("</body>");
             lines.Add("</html>");
 
-            File.WriteAllLines(saveFolderPath + "\\" + reportName + ".html", lines);
+            File.WriteAllLines(saveFolderPath + "\\" + fileName + ".html", lines);
         }
 
         private void GenerateViewPointImage(SavedItemCollection savedItem, ComApi.InwOpState10 state,
@@ -494,6 +521,15 @@ namespace CustomReport2020
                     else
                     {
                         // Throw an exception to stop the program
+
+                        this.viewpointReviewTexts.Clear();
+                        this.viewpointComments.Clear();
+                        this.userTextInputs.Clear();
+                        this.userColorInputs.Clear();
+                        this.backgroundColorImage.Clear();
+                        this.savedViewPoints = new VPGroup("Root");
+                        this.counter = 0;
+                        this.cancelProcess = false;
 
                         throw new System.ArgumentException("The process canceled.");
 

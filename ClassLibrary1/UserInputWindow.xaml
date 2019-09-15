@@ -6,11 +6,35 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:CustomReport2020"
         mc:Ignorable="d"
-        Title="Custom Report" Height="810" Width="420" MaxWidth="420">
+        Title="Custom Report" Height="910" Width="420" MaxWidth="420" MaxHeight="910">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Margin="10 20 10 0">
+
+            <Label Content="Report Setting" FontSize="20"/>
+            
+            <Grid Name="ReportSettingGrid" Grid.Column="0" Margin="5 5 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="ReportNameGrid" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Report Name" Grid.Column="0" HorizontalAlignment="Left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="ReportNameInput" Grid.Column="1" Text="Report" 
+                         Padding="4 5 4 0"/>
+                </Grid>
+                
+            </Grid>
 
             <Label Content="Image Resolution" FontSize="20"/>
 
@@ -105,6 +129,7 @@
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
 
                 <Grid Name="ViewpointPropertyUI" Grid.Row="0">
@@ -117,7 +142,17 @@
                     <CheckBox Name="ReviewTextInclude" Content="Review Texts" Grid.Column="1" IsChecked="True"/>
                 </Grid>
 
-                <Grid Name="HeaderUI" Grid.Row="1" Margin="0 5 0 0">
+                <Grid Name="ReportUI" Grid.Row="1" Margin="0 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Name Font Size" Grid.Column="0" HorizontalAlignment="left"
+                   Padding="0 6 0 0"/>
+                    <TextBox Name="ReportSizeInput" Grid.Column="1" Text="30" Padding="4 5 4 0"/>
+                </Grid>
+
+                <Grid Name="HeaderUI" Grid.Row="2" Margin="0 5 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -126,7 +161,7 @@
                    Padding="0 6 0 0"/>
                     <TextBox Name="HeaderSizeInput" Grid.Column="1" Text="15" Padding="4 5 4 0"/>
                 </Grid>
-                <Grid Name="SpanUI" Grid.Row="2" Margin="0 5 0 0">
+                <Grid Name="SpanUI" Grid.Row="3" Margin="0 5 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -135,7 +170,7 @@
                    Padding="0 6 0 0"/>
                     <TextBox Name="CommentsSizeInput" Grid.Column="1" Text="10" Padding="4 5 4 0"/>
                 </Grid>
-                <Grid Name="ReviewTextUI" Grid.Row="3" Margin="0 5 0 0">
+                <Grid Name="ReviewTextUI" Grid.Row="4" Margin="0 5 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
