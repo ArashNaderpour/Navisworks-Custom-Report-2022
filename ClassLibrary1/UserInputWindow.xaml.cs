@@ -673,7 +673,7 @@ namespace CustomReport2020
                 }
                 else
                 {
-                    if (inputText == "AUTOMATIC RENAME")
+                    if (inputText.ToUpper() == "AUTOMATIC RENAME")
                     {
                         while (this.viewpointComments.ContainsKey(svpName + " (" + nameSeq.ToString() + ")"))
                         {
