@@ -56,6 +56,49 @@ namespace CustomReport2020
             Grid.SetRow(group, groups.RowDefinitions.Count - 1);
         }
 
+        public static void AddGroup(Grid groups, string groupName, byte[] groupColor)
+        {
+            Random rnd = new Random();
+
+            RowDefinition gridRow = new RowDefinition();
+            groups.RowDefinitions.Add(gridRow);
+
+            Grid group = new Grid();
+
+            group.Name = "GroupUI" + groups.Children.Count;
+            group.Margin = new Thickness(0, 0, 0, 5);
+
+            ColumnDefinition gridCol1 = new ColumnDefinition();
+            gridCol1.Width = new GridLength(1, GridUnitType.Star);
+
+            ColumnDefinition gridCol2 = new ColumnDefinition();
+            gridCol2.Width = new GridLength(2, GridUnitType.Star);
+
+            group.ColumnDefinitions.Add(gridCol1);
+            group.ColumnDefinitions.Add(gridCol2);
+
+            System.Windows.Controls.TextBox userTextInput = new System.Windows.Controls.TextBox();
+            userTextInput.Name = "UserInput" + groups.Children.Count;
+            userTextInput.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            userTextInput.Text = groupName;
+            Grid.SetColumn(userTextInput, 0);
+
+            ColorPicker userColorInput = new ColorPicker();
+            userColorInput.Name = "UserColor" + groups.Children.Count;
+            userColorInput.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            userColorInput.DisplayColorTooltip = true;
+            userColorInput.AvailableColorsSortingMode = ColorSortingMode.HueSaturationBrightness;
+            Color color = Color.FromArgb(groupColor[0], groupColor[1], groupColor[2], groupColor[3]);
+            userColorInput.SelectedColor = color;
+            Grid.SetColumn(userColorInput, 1);
+
+            group.Children.Add(userTextInput);
+            group.Children.Add(userColorInput);
+
+            groups.Children.Add(group);
+            Grid.SetRow(group, groups.RowDefinitions.Count - 1);
+        }
+
         public static void DeleteGroup(Grid groups)
         {
             // A List To Store UI Elements To Remove From The Controller Window

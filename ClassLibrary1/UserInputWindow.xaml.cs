@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.IO;
 using System.Windows.Forms;
-using System.Reflection;
+using System;
 
 using Autodesk.Navisworks.Api;
 using ComBridge = Autodesk.Navisworks.Api.ComApi.ComApiBridge;
@@ -14,6 +14,7 @@ using Microsoft.VisualBasic;
 using System.Web.Script.Serialization;
 using System.Drawing;
 
+
 namespace CustomReport2020
 {
     /// <summary>
@@ -21,6 +22,9 @@ namespace CustomReport2020
     /// </summary>
     public partial class UserInputWindow : Window
     {
+        // Save Dictionary
+        Dictionary<string, object> saveData = new Dictionary<string, object>();
+
         public int widthResolution;
         public int heightResolution;
 
@@ -335,6 +339,198 @@ namespace CustomReport2020
             }
         }
 
+        public void Save_Clicked(object sender, RoutedEventArgs e)
+        {
+            saveData.Clear();
+
+            Stream stream = null;
+            StreamWriter streamWriter = null;
+
+            saveData.Add("ReportName", this.ReportNameInput.Text);
+
+            saveData.Add("ImageWidth", this.WidthInput.Text);
+            saveData.Add("ImageHeight", this.HeightInput.Text);
+            saveData.Add("ImageScale", this.ImageScale.Value);
+
+            saveData.Add("ColumnCount", this.ColumnCountInput.Text);
+            saveData.Add("RowHeight", this.RowHeightInput.Text);
+
+            saveData.Add("CommentsInclude", this.CommentsInclude.IsChecked);
+            saveData.Add("ReviewTextInclude", this.ReviewTextInclude.IsChecked);
+
+            saveData.Add("NameFontSize", this.ReportSizeInput.Text);
+            saveData.Add("HeaderFontSize", this.HeaderSizeInput.Text);
+            saveData.Add("CommentFontSize", this.CommentsSizeInput.Text);
+            saveData.Add("ReviewFontSize", this.ReviewTextSizeInput.Text);
+
+            List<string> groupNames = new List<string>();
+
+            List<byte[]> groupColors = new List<byte[]>();
+
+            foreach (System.Windows.Controls.Grid grid in this.GroupSettingGrid.Children)
+            {
+                string groupName = ((System.Windows.Controls.TextBox)(grid.Children[0])).Text;
+                groupNames.Add(groupName);
+
+                byte[] groupColor = new byte[] { ((Xceed.Wpf.Toolkit.ColorPicker)grid.Children[1]).SelectedColor.Value.A,
+                    ((Xceed.Wpf.Toolkit.ColorPicker)grid.Children[1]).SelectedColor.Value.R,
+                    ((Xceed.Wpf.Toolkit.ColorPicker)grid.Children[1]).SelectedColor.Value.G,
+                    ((Xceed.Wpf.Toolkit.ColorPicker)grid.Children[1]).SelectedColor.Value.B };
+
+                groupColors.Add(groupColor);
+            }
+
+            saveData.Add("GroupNames", groupNames);
+            saveData.Add("GroupColors", groupColors);
+
+            try
+            {
+                string projectData = (new JavaScriptSerializer()).Serialize(saveData);
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+                if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    using (stream = File.Open(saveFileDialog.FileName, FileMode.Create))
+                    {
+                        using (streamWriter = new StreamWriter(stream))
+                        {
+                            streamWriter.Write(projectData);
+                        }
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                System.Windows.MessageBox.Show(exc.ToString());
+            }
+        }
+
+        public void Load_Clicked(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, object> loadData = new Dictionary<string, object>();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            Stream stream = null;
+
+            string pathToFile = "";
+
+            // Read The File
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    stream = openFileDialog.OpenFile();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Error: Could Not Read File From Disk. Original Error: " + ex.Message);
+                    return;
+                }
+
+                if (stream != null)
+                {
+                    pathToFile = openFileDialog.FileName;
+
+                    try
+                    {
+                        loadData = (new JavaScriptSerializer()).Deserialize<Dictionary<string, object>>(File.ReadAllText(pathToFile));
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error: Could Not Open The File. Original error: " + ex.Message);
+                        return;
+                    }
+
+                    // Load The Project
+                    try
+                    {
+                        this.ReportNameInput.Text = (string)loadData["ReportName"];
+
+                        this.WidthInput.Text = (string)loadData["ImageWidth"];
+                        this.HeightInput.Text = (string)loadData["ImageHeight"];
+                        this.ImageScale.Value = (int)loadData["ImageScale"];
+
+                        this.ColumnCountInput.Text = (string)loadData["ColumnCount"];
+                        this.RowHeightInput.Text = (string)loadData["RowHeight"];
+
+                        this.CommentsInclude.IsChecked = (bool)loadData["CommentsInclude"];
+                        this.ReviewTextInclude.IsChecked = (bool)loadData["ReviewTextInclude"];
+
+                        this.ReportSizeInput.Text = (string)loadData["NameFontSize"];
+                        this.HeaderSizeInput.Text = (string)loadData["HeaderFontSize"];
+                        this.CommentsSizeInput.Text = (string)loadData["CommentFontSize"];
+                        this.ReviewTextSizeInput.Text = (string)loadData["ReviewFontSize"];
+
+                        List<string> groupNames = ((System.Collections.ArrayList)loadData["GroupNames"]).Cast<string>().ToList();
+                        List<byte[]> groupColors = new List<byte[]>();
+                        
+                        System.Collections.ArrayList colorsArrayList = (System.Collections.ArrayList)loadData["GroupColors"];
+
+                        for (int i = 0; i < colorsArrayList.Count; i++)
+                        {
+                            System.Collections.ArrayList colorArrayList = (System.Collections.ArrayList)colorsArrayList[i];
+                            
+                            byte[] groupColor = new byte[4];
+
+                            for (int j = 0; j < colorArrayList.Count; j++)
+                            {
+                               
+                                byte colorValue = Convert.ToByte(colorArrayList[j]);
+
+                                groupColor[j] = colorValue;
+                            }
+
+                            groupColors.Add(groupColor);
+                        }
+
+                        if (this.GroupSettingGrid.Children.Count < groupNames.Count)
+                        {
+                            for (int i = 0; i < groupNames.Count; i++)
+                            {
+                                if (i < this.GroupSettingGrid.Children.Count)
+                                {
+                                    ((System.Windows.Controls.TextBox)((System.Windows.Controls.Grid)this.GroupSettingGrid.Children[i]).Children[0]).Text = groupNames[i];
+
+                                    ((Xceed.Wpf.Toolkit.ColorPicker)((System.Windows.Controls.Grid)this.GroupSettingGrid.Children[i]).Children[1]).SelectedColor = 
+                                        System.Windows.Media.Color.FromArgb(groupColors[i][0], groupColors[i][1], groupColors[i][2], groupColors[i][3]);
+                                }
+                                else
+                                {
+                                    UIMethods.AddGroup(this.GroupSettingGrid, groupNames[i], groupColors[i]);
+                                }
+                            }
+                        }
+
+                        else
+                        {
+                            int existingGroupCount = this.GroupSettingGrid.Children.Count;
+
+                            for (int i = 0; i < existingGroupCount; i++)
+                            {
+                                if (i < groupNames.Count)
+                                {
+                                    ((System.Windows.Controls.TextBox)((System.Windows.Controls.Grid)this.GroupSettingGrid.Children[i]).Children[0]).Text = groupNames[i];
+
+                                    ((Xceed.Wpf.Toolkit.ColorPicker)((System.Windows.Controls.Grid)this.GroupSettingGrid.Children[i]).Children[1]).SelectedColor =
+                                        System.Windows.Media.Color.FromArgb(groupColors[i][0], groupColors[i][1], groupColors[i][2], groupColors[i][3]);
+                                }
+                                else
+                                {
+                                    UIMethods.DeleteGroup(this.GroupSettingGrid);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Error: Data is Corupted, " + ex.Message);
+                        return;
+                    }
+                }
+            }
+        }
+
         private void dumpSavedVP(int width, int height)
         {
             // get the state of COM
@@ -513,7 +709,7 @@ namespace CustomReport2020
                     }
 
                     this.SaveViewpointData(comments, reviewTexts);
-                  
+
                     if (this.cancelProcess == false)
                     {
                         savedViewPoints.children.Add(svpName);
@@ -534,7 +730,7 @@ namespace CustomReport2020
                         throw new System.ArgumentException("The process canceled.");
 
                     }
-                    
+
                     // the image file name
                     string imageFileName = saveFolderPath + "\\" + svpName + ".png";
 
