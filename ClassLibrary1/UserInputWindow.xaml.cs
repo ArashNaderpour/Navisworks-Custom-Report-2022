@@ -15,7 +15,7 @@ using System.Web.Script.Serialization;
 using System.Drawing;
 
 
-namespace CustomReport2020
+namespace CustomReport2022
 {
     /// <summary>
     /// Interaction logic for UserInputWindow.xaml

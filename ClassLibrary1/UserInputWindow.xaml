@@ -1,10 +1,10 @@
-﻿<Window x:Class="CustomReport2020.UserInputWindow"
+﻿<Window x:Class="CustomReport2022.UserInputWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:CustomReport2020"
+        xmlns:local="clr-namespace:CustomReport2022"
         mc:Ignorable="d"
         Title="Custom Report" Height="975" Width="420" MaxWidth="420" MaxHeight="975">
 

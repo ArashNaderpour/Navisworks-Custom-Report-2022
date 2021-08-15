@@ -5,7 +5,7 @@ using Autodesk.Navisworks.Api.Plugins;
 using ComBridge = Autodesk.Navisworks.Api.ComApi.ComApiBridge;
 using ComApi = Autodesk.Navisworks.Api.Interop.ComApi;
 
-namespace CustomReport2020
+namespace CustomReport2022
 {
     [PluginAttribute("CustomReport.Report",                         //Plugin name
                     "com.arashnaderpour",                           //4 character Developer ID or GUID

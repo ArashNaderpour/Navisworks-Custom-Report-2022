@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace CustomReport2020
+namespace CustomReport2022
 {
     public class VPGroup
     {

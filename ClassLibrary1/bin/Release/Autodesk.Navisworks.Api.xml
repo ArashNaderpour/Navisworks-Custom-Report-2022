@@ -2206,6 +2206,16 @@ Occurs when the document has been saved into a file
 Occurs when the document is about to be saved into a file
 </summary>
     </member>
+    <member name="E:Autodesk.Navisworks.Api.Document.FilesUpdated">
+      <summary>
+Occurs when the document has updated files.
+</summary>
+    </member>
+    <member name="E:Autodesk.Navisworks.Api.Document.FilesUpdating">
+      <summary>
+Occurs when the document is about to update files.
+</summary>
+    </member>
     <member name="P:Autodesk.Navisworks.Api.Document.FrontRightTopViewUpVector">
       <summary>
 Returns view direction up vector to look at model from front-right-top direction.
@@ -2221,19 +2231,14 @@ Returns view direction to look at model from front-right-top direction.
 Natural front vector for this model. Will be Zero if no front vector defined.
 </summary>
     </member>
-    <member name="M:Autodesk.Navisworks.Api.Document.GenerateThumbnail(System.Int32,System.Int32)">
+    <member name="M:Autodesk.Navisworks.Api.Document.GenerateImage(Autodesk.Navisworks.Api.ImageGenerationStyle,System.Int32,System.Int32)">
       <summary>
-Generates a Thumbnail Image for this Document.
+Generates an Image for this Document.
 </summary>
     </member>
-    <member name="M:Autodesk.Navisworks.Api.Document.GenerateThumbnail(System.Int32,System.Int32,System.Double)">
+    <member name="M:Autodesk.Navisworks.Api.Document.GenerateImage(Autodesk.Navisworks.Api.ImageGenerationStyle,System.Int32,System.Int32,System.Double)">
       <summary>
-Generates a Thumbnail Image for this Document.
-</summary>
-    </member>
-    <member name="M:Autodesk.Navisworks.Api.Document.GenerateThumbnailByRayTrace(System.Int32,System.Int32)">
-      <summary>
-Generates a thumbnail by ray trace for this Document.
+Generates an Image for this Document.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.Document.GetBoundingBox(System.Boolean)">
@@ -2771,7 +2776,13 @@ Enumeration of Navisworks <see cref="T:Autodesk.Navisworks.Api.Document">Documen
       <summary>Version of file format used by Navisworks 2018</summary>
     </member>
     <member name="F:Autodesk.Navisworks.Api.DocumentFileVersion.Navisworks2019">
-      <summary>Version of file format used by Navisworks 2018</summary>
+      <summary>Version of file format used by Navisworks 2019</summary>
+    </member>
+    <member name="F:Autodesk.Navisworks.Api.DocumentFileVersion.Navisworks2020">
+      <summary>Version of file format used by Navisworks 2020</summary>
+    </member>
+    <member name="F:Autodesk.Navisworks.Api.DocumentFileVersion.Navisworks2021">
+      <summary>Version of file format used by Navisworks 2021</summary>
     </member>
     <member name="T:Autodesk.Navisworks.Api.DocumentInfo">
       <summary>
@@ -3142,9 +3153,24 @@ Event arguments used for <see cref="T:Autodesk.Navisworks.Api.Document" /> SaveF
 Gets the name of the file that is being saved to
 </summary>
     </member>
+    <member name="P:Autodesk.Navisworks.Api.FileSaveEventArgs.IsPublish">
+      <summary>
+Gets whether the save is a publish
+</summary>
+    </member>
     <member name="P:Autodesk.Navisworks.Api.FileSaveEventArgs.SaveComplete">
       <summary>
 Gets whether the save has completed successfully
+</summary>
+    </member>
+    <member name="T:Autodesk.Navisworks.Api.FileUpdateEventArgs">
+      <summary>
+Event arguments used for <see cref="T:Autodesk.Navisworks.Api.Document" /> FileUpdate related events
+</summary>
+    </member>
+    <member name="P:Autodesk.Navisworks.Api.FileUpdateEventArgs.AnyFilesUpdated">
+      <summary>
+Gets whether any files were updated.
 </summary>
     </member>
     <member name="T:Autodesk.Navisworks.Api.FolderItem">
@@ -5711,6 +5737,26 @@ The same object as was passed to argument 'value'. This enables settor chaining.
       <exception cref="T:System.ArgumentException">Name is not a valid dynamic property.</exception>
       <exception cref="T:System.InvalidCastException">Value does not cast to the expected dynamic property type.</exception>
       <exception cref="T:System.NotSupportedException">Setting to the property is not supported.</exception>
+    </member>
+    <member name="T:Autodesk.Navisworks.Api.ImageGenerationStyle">
+      <summary>
+Defines the style of the image generation
+</summary>
+    </member>
+    <member name="F:Autodesk.Navisworks.Api.ImageGenerationStyle.Scene">
+      <summary>
+Render scene
+</summary>
+    </member>
+    <member name="F:Autodesk.Navisworks.Api.ImageGenerationStyle.SceneUsingRayTrace">
+      <summary>
+Render scene using ray trace
+</summary>
+    </member>
+    <member name="F:Autodesk.Navisworks.Api.ImageGenerationStyle.ScenePlusOverlay">
+      <summary>
+Render scene plus any overlay such as Redlines
+</summary>
     </member>
     <member name="T:Autodesk.Navisworks.Api.InfoPropertyCategory">
       <summary>
@@ -8594,12 +8640,12 @@ Object has been Disposed
     </member>
     <member name="M:Autodesk.Navisworks.Api.Rotation3D.ToAxisAndAngle">
       <summary>
-Calculates an axis and angle representation of this rotation.   
+Calculates an axis and angle representation of this rotation.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.Rotation3D.ToEulerAngles">
       <summary>
-Calculates the Euler angles for this rotation. 
+Calculates the Euler angles for this rotation.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.Rotation3D.TolerantEquals(Autodesk.Navisworks.Api.Rotation3D)">
@@ -14192,7 +14238,7 @@ Updates the viewpoint in this view based on change required.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.CreateViewpointCopy">
       <summary>
-Returns a viewpoint representing this view. 
+Returns a viewpoint representing this view.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.Dispose"></member>
@@ -14204,8 +14250,8 @@ The document associated with this View.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.EndInteractive">
       <summary>
-Decrements an internal counter that determines if the view is in interactive mode. 
-As the count goes from 1 to 0 the View is set out of interactive mode. 
+Decrements an internal counter that determines if the view is in interactive mode.
+As the count goes from 1 to 0 the View is set out of interactive mode.
 Should be used with a matched call to StartInteractive.
 </summary>
     </member>
@@ -14214,19 +14260,14 @@ Should be used with a matched call to StartInteractive.
 Focuses the view on the currently selected objects.
 </summary>
     </member>
-    <member name="M:Autodesk.Navisworks.Api.View.GenerateThumbnail(System.Int32,System.Int32)">
+    <member name="M:Autodesk.Navisworks.Api.View.GenerateImage(Autodesk.Navisworks.Api.ImageGenerationStyle,System.Int32,System.Int32)">
       <summary>
-Generates a Thumbnail Image for this View.
+Generates an Image for this View.
 </summary>
     </member>
-    <member name="M:Autodesk.Navisworks.Api.View.GenerateThumbnail(System.Int32,System.Int32,System.Double)">
+    <member name="M:Autodesk.Navisworks.Api.View.GenerateImage(Autodesk.Navisworks.Api.ImageGenerationStyle,System.Int32,System.Int32,System.Double)">
       <summary>
-Generates a Thumbnail Image for this View.
-</summary>
-    </member>
-    <member name="M:Autodesk.Navisworks.Api.View.GenerateThumbnailByRayTrace(System.Int32,System.Int32)">
-      <summary>
-Generates a Thumbnail Image for this View.
+Generates an Image for this View.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.GetClippingPlanes">
@@ -14241,7 +14282,7 @@ Gets redlines in the form of a JSON RedlineCollection object.
     </member>
     <member name="P:Autodesk.Navisworks.Api.View.Height">
       <summary>
-The renderable height of the view in Windows screen pixels  
+The renderable height of the view in Windows screen pixels
 </summary>
     </member>
     <member name="P:Autodesk.Navisworks.Api.View.IsDisposed">
@@ -14251,7 +14292,7 @@ Has this view been disposed ?
     </member>
     <member name="P:Autodesk.Navisworks.Api.View.IsInteractive">
       <summary>
-Determines if the view is in interactive mode. 
+Determines if the view is in interactive mode.
 </summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.LookFromFrontRightTop">
@@ -14261,7 +14302,7 @@ Move's the Camera to look from FrontRightTop.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemFromPoint(System.Int32,System.Int32)">
       <summary>
-Picks a single item from the given window coordinate point. 
+Picks a single item from the given window coordinate point.
 </summary>
       <returns>
 A PickItemResult object that contains the picked item.
@@ -14270,7 +14311,7 @@ Returns null if nothing is picked or coordinates are invalid.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemFromPoint(System.Int32,System.Int32,System.Int32,System.Boolean)">
       <summary>
-Picks a single item from the given window coordinate point. 
+Picks a single item from the given window coordinate point.
 </summary>
       <param name="pickingWidth">
 Width of picking region in pixels. Normally 1.
@@ -14285,28 +14326,28 @@ Returns null if nothing is picked or coordinates are invalid.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemFromRectangle(System.Int32,System.Int32,System.Int32,System.Int32)">
       <summary>
-Picks a single item from the given window coordinate rectangle. 
+Picks a single item from the given window coordinate rectangle.
 </summary>
       <returns>
 A PickItemResult object that contains the picked item
-Returns null if nothing is picked or coordinates are invalid.  
+Returns null if nothing is picked or coordinates are invalid.
 </returns>
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemFromRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
       <summary>
-Picks a single item from the given window coordinate rectangle.  
+Picks a single item from the given window coordinate rectangle.
 </summary>
       <param name="asRendered">
 Whether picking should operate only on items that were rendered during the last frame. Normally true.
 </param>
       <returns>
 A PickItemResult object that contains the picked item
-Returns null if nothing is picked or coordinates are invalid.  
+Returns null if nothing is picked or coordinates are invalid.
 </returns>
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemsFromRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
       <summary>
-Picks multiple items from the given window coordinate rectangle. 
+Picks multiple items from the given window coordinate rectangle.
 </summary>
       <param name="containedOnly">
 Whether picking should operate only on items that are contained in the rectangle
@@ -14318,7 +14359,7 @@ Returns null if nothing is picked or coordinates are invalid.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.PickItemsFromRectangle(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
       <summary>
-Picks multiple items from the given window coordinate rectangle. 
+Picks multiple items from the given window coordinate rectangle.
 </summary>
       <param name="containedOnly">
 Whether picking should operate only on items that are contained in the rectangle.
@@ -14361,7 +14402,7 @@ Failed to set redlines.
     </member>
     <member name="M:Autodesk.Navisworks.Api.View.StartInteractive">
       <summary>
-Increments an internal counter that determines if the view is in interactive mode. 
+Increments an internal counter that determines if the view is in interactive mode.
 As the count goes from 0 to 1 the View is set into interactive mode.
 Should be used with a matched call to EndInteractive.
 </summary>
@@ -14385,7 +14426,7 @@ Sets redlines.
     </member>
     <member name="P:Autodesk.Navisworks.Api.View.Width">
       <summary>
-The renderable width of the view in Windows screen pixels  
+The renderable width of the view in Windows screen pixels
 </summary>
     </member>
     <member name="T:Autodesk.Navisworks.Api.ViewChange">
@@ -14896,7 +14937,7 @@ No redraw requested unless other flags specified.
     </member>
     <member name="F:Autodesk.Navisworks.Api.ViewRedrawRequests.Render">
       <summary>
-Main Render requested. 
+Main Render requested.
 </summary>
     </member>
     <member name="F:Autodesk.Navisworks.Api.ViewRedrawRequests.OverlayRender">
@@ -15353,9 +15394,14 @@ Get the main window of the application. Use as parent window for dialogs and mes
     </member>
     <member name="P:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.ServerType">
       <summary>
-Sign In Server Type.
+Sign In server type.
 </summary>
       <returns>Server Type.</returns>
+    </member>
+    <member name="E:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.ServerTypeChanged">
+      <summary>
+Occurs when the server type changes.
+</summary>
     </member>
     <member name="M:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SetDockPanePluginActive(System.String)">
       <summary>
@@ -15383,15 +15429,25 @@ Action to raise <see cref="E:Autodesk.Navisworks.Api.Application.Idle">Idle</see
 creation, and with null during GUI destruction.
 </param>
     </member>
+    <member name="E:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SignedIn">
+      <summary>
+Occurs when user signs in.
+</summary>
+    </member>
+    <member name="E:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SignedOut">
+      <summary>
+Occurs when user has signed out.
+</summary>
+    </member>
     <member name="M:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SignIn">
       <summary>
 Authenticate with Autodesk ID. Popup generic sign-in UI in Navisworks to allow users to enter the credentials.
 </summary>
       <returns>true if authenticated or false if failed to authenticate.</returns>
     </member>
-    <member name="E:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SignInChanged">
+    <member name="E:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SigningOut">
       <summary>
-Occurs when Sign In status changes.
+Occurs when user is signing out.
 </summary>
     </member>
     <member name="P:Autodesk.Navisworks.Api.ApplicationParts.IApplicationGui.SignInUserId">
@@ -16546,6 +16602,15 @@ No active viewer
       <exception cref="T:System.InvalidOperationException">
 Failed to add redlines to current saved viewpoint
 </exception>
+      <exception cref="T:System.NotSupportedException">
+Cannot convert to Redlines
+</exception>
+      <exception cref="T:System.NotSupportedException">
+No active viewer
+</exception>
+      <exception cref="T:System.InvalidOperationException">
+Failed to add redlines to current saved viewpoint
+</exception>
     </member>
     <member name="P:Autodesk.Navisworks.Api.DocumentParts.DocumentCurrentMeasurement.CanConvertToRedlines">
       <summary>
@@ -16559,6 +16624,9 @@ Returns the difference
       <exception cref="T:System.NotSupportedException">
 Difference not set
 </exception>
+      <exception cref="T:System.NotSupportedException">
+Difference not set
+</exception>
     </member>
     <member name="P:Autodesk.Navisworks.Api.DocumentParts.DocumentCurrentMeasurement.EndPoint">
       <summary>
@@ -16567,11 +16635,17 @@ Returns the end point
       <exception cref="T:System.NotSupportedException">
 EndPoint not set
 </exception>
+      <exception cref="T:System.NotSupportedException">
+EndPoint not set
+</exception>
     </member>
     <member name="P:Autodesk.Navisworks.Api.DocumentParts.DocumentCurrentMeasurement.FirstPoint">
       <summary>
 Returns the first point
 </summary>
+      <exception cref="T:System.NotSupportedException">
+FirstPoint not set
+</exception>
       <exception cref="T:System.NotSupportedException">
 FirstPoint not set
 </exception>
@@ -16603,11 +16677,17 @@ Returns the measurement type
       <exception cref="T:System.NotSupportedException">
 Measurement not set
 </exception>
+      <exception cref="T:System.NotSupportedException">
+Measurement not set
+</exception>
     </member>
     <member name="P:Autodesk.Navisworks.Api.DocumentParts.DocumentCurrentMeasurement.MeasurementValue">
       <summary>
 Returns the measurement value
 </summary>
+      <exception cref="T:System.NotSupportedException">
+Measurement not set
+</exception>
       <exception cref="T:System.NotSupportedException">
 Measurement not set
 </exception>
@@ -17347,6 +17427,22 @@ descendants to the specified item, and the model index this item belongs to.
       <exception cref="T:System.ArgumentNullException">
 Argument 'item' is null
 </exception>
+    </member>
+    <member name="M:Autodesk.Navisworks.Api.DocumentParts.DocumentModels.FindIdForModelItem(Autodesk.Navisworks.Api.ModelItem)">
+      <summary>
+Returns numeric ID for a given model item.
+</summary>
+      <returns>
+ID for model item, or 0 if no ID.
+</returns>
+    </member>
+    <member name="M:Autodesk.Navisworks.Api.DocumentParts.DocumentModels.FindModelItemsById(System.Int32,System.UInt64)">
+      <summary>
+Returns collection of model items that have a given numeric ID.
+</summary>
+      <returns>
+Model item collection containing requested items (if any).
+</returns>
     </member>
     <member name="P:Autodesk.Navisworks.Api.DocumentParts.DocumentModels.First">
       <summary>

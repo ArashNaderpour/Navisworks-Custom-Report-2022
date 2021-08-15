@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CustomReport2020.Properties {
+namespace CustomReport2022.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace CustomReport2020.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +39,7 @@ namespace CustomReport2020.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CustomReport2020.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CustomReport2022.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -68,12 +68,11 @@ namespace CustomReport2020.Properties {
         ///&lt;title&gt;&lt;/title&gt;
         ///&lt;style&gt;
         ///            body { font-family: georgia, sans-serif; }
-        ///            h1 { font-family: arial, sans-serif; margin-top: 30px; }
         ///			hr { border: 4px solid black; }
         ///            span.namevaluepair { display: block; }
         ///			#headerImage { width: 100%; height: 100%; display: block; }
         ///			#LogoImage{ width: 100%; height: 100%; display: block; }
-        ///            div.animation { backgro [rest of string was truncated]&quot;;.
+        ///            div.animation { background-color: silver; border: 1px solid black; margin: 1em; padding: 1em; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HTMLTemplate {
             get {

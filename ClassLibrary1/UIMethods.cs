@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using Xceed.Wpf.Toolkit;
 using System.Windows.Media;
 
-namespace CustomReport2020
+namespace CustomReport2022
 {
     class UIMethods
     {
