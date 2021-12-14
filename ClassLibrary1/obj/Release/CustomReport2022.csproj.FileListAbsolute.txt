@@ -21,7 +21,6 @@ C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\bin\Re
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\bin\Release\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\bin\Release\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\bin\Release\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022.csprojAssemblyReference.cache
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\UserInputWindow.g.cs
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022_MarkupCompile.cache
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022_MarkupCompile.lref
@@ -33,3 +32,4 @@ C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Re
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022.csproj.CopyComplete
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022.dll
 C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022.pdb
+C:\Users\anaderpour\Documents\Navisworks-Custom-Report-2022\ClassLibrary1\obj\Release\CustomReport2022.csproj.AssemblyReference.cache
